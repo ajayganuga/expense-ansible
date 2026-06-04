@@ -27,7 +27,7 @@
     community.mysql.mysql_info: #retrieve MySQL server information, such as databases, users, configuration settings, and status
       login_user: root
       login_password: "{{ mysql_root_password }}"
-      login_host: mysql.tagore.fun
+      login_host: <MYSQL_PRIVATE_IP>
     register: mysql_info
     ignore_errors: true
 
@@ -39,4 +39,3 @@
   - name: setup root password
     ansible.builtin.command: " mysql_secure_installation --set-root-pass {{ mysql_root_password }} "
     when: mysql_info.failed is true #which means password is not setup..
-    
